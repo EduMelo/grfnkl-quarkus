@@ -1,6 +1,7 @@
 package dev.edumelo.grfnkl.socialplataformsusers;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -16,12 +17,14 @@ public class SocialPlataformUserService {
 	@Inject
 	SocialPlataformServiceFactory socialPlataformServiceFactory;
 	
-	public List<SocialPlataformUser> getFollowers(SocialPlataformEnum serviceName, String userName) {
+	public List<SocialPlataformUser> getFollowing(SocialPlataformEnum serviceName, String userName) {
 		log.trace("getFollowers. serviceName: " + serviceName + " userName: " + userName);
 		
 		return socialPlataformServiceFactory
 				.createSocialPlataformService(serviceName)
-				.getFollowers(userName);
+				.getFollowing(userName, "&lBwN#u0G6E^").stream()
+				.map(f -> (SocialPlataformUser) f)
+				.collect(Collectors.toList());
 	}
 
 }

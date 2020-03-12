@@ -14,12 +14,12 @@ public class SocialPlataformServiceFactory {
 
 	@Inject
 	@Any
-	Instance<SocialPlataformService> socialPlataformService;
+	Instance<SocialPlataformService<?>> socialPlataformService;
 	
-	public SocialPlataformService createSocialPlataformService(SocialPlataformEnum serviceName) {
+	public SocialPlataformService<?> createSocialPlataformService(SocialPlataformEnum serviceName) {
 		log.trace("createSocialPlataformService. serviceName: " + serviceName);
 		
-		Instance<SocialPlataformService> instance = this.socialPlataformService.select(new SocialPlataformServiceTypeNameLiteral(serviceName));
+		Instance<SocialPlataformService<?>> instance = this.socialPlataformService.select(new SocialPlataformServiceTypeNameLiteral(serviceName));
 		
 		if(!instance.isResolvable()) {
 			throw new IllegalArgumentException(String.format("Service name %s not supported", serviceName));

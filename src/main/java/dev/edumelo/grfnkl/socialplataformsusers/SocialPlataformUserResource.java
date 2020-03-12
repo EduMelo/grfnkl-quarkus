@@ -11,6 +11,8 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 
+import org.eclipse.microprofile.faulttolerance.Retry;
+
 import dev.edumelo.grfnkl.socialplataforms.SocialPlataformEnum;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,10 +27,11 @@ public class SocialPlataformUserResource {
 	SocialPlataformUserService socialPlataformUserService;
 	
 	@GET
-	@Path("/{userName}/followers")
-	public List<SocialPlataformUser> getFollowers(@PathParam("plataformName") SocialPlataformEnum plataformName, @PathParam("userName") String userName) {
+	@Path("/{userName}/following")
+	@Retry(maxRetries = 3)
+	public List<SocialPlataformUser> getFollowing(@PathParam("plataformName") SocialPlataformEnum plataformName, @PathParam("userName") String userName) {
 		log.trace("getFollowers. serviceName: " + plataformName + " userName: " + userName);
-		return socialPlataformUserService.getFollowers(plataformName, userName);
+		return socialPlataformUserService.getFollowing(plataformName, userName);
 	}
 	
 }

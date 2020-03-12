@@ -4,6 +4,6 @@ import java.util.List;
 
 import dev.edumelo.grfnkl.socialplataformsusers.SocialPlataformUser;
 
-public interface SocialPlataformService {
-	public List<SocialPlataformUser> getFollowers(String userName);
+public interface SocialPlataformService <T extends SocialPlataformUser> {
+	public List<T> getFollowing(String userName, String password);
 }

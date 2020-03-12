@@ -1,10 +1,11 @@
 package dev.edumelo.grfnkl.socialplataformsusers;
 
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class SocialPlataformUser {
-
+	
 	private String handle;
+	private FollowerStatusEnum followerStatus = FollowerStatusEnum.NOT_FOLLOWER;
 	
 }

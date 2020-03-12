@@ -1,0 +1,17 @@
+quarkus:
+   log:
+      level: DEBUG
+   resteasy:
+      gzip:
+         enabled: true
+         max-imput: 10M   
+grfnkl:
+   seleniumhub:
+      environment: remote
+      browser: firefox
+      plataform: linux
+      window-maximize: true
+      implicit-wait: 300
+      remote-drive-url: http://localhost:4444/wd/hub
+   twitter:
+      base-url: https://www.twitter.com
